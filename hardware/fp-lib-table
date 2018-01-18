@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name heater)(type KiCad)(uri /Users/afm/Projects/Electronics/TelescopeHeater/hardware/heater.pretty)(options "")(descr "project specific footprints"))
+)
