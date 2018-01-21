@@ -42,11 +42,18 @@ wa = bat_w + 2 * bat_wall;
 ha = bat_h + 2 * bat_wall;
 la = 120;
 
-module battery() {
+function radius(a, b) = (a*a + b*b) / (2*b);
+
+module battery(a, b) {
 	translate([0, 0, -5])
 	minkowski() {
-		cube([bat_w - 2 * bat_r, bat_h - 2 * bat_r, la], center = true);
-		cylinder(r = bat_r, h = 2 * bar_r, center = true, $fn = 30);
+		cube([bat_w - 2 * a, bat_h - 2 * b, la], center = true);
+		intersection() {
+			translate([0, b - radius(a, b), 0])
+				cylinder(r = radius(a,b), h = 2 * bat_r, center = true, $fn = 40);
+			translate([0, -b + radius(a, b), 0])
+				cylinder(r = radius(a,b), h = 2 * bat_r, center = true, $fn = 40);
+		}
 	}
 }
 
@@ -54,13 +61,15 @@ module batterycompartment() {
 	translate([0, 0, -la/2])
 	difference() {
 		difference() {
-			cube([wa, ha, la], center = true);
+			minkowski() {
+				cube([wa - 6, ha - 6, la - 10], center = true);
+				cylinder(r = 3, h = 10, center = true, $fn = 30);
+			}
 			translate([0, -ha/2, -wall - bat_l])
 				cube([2 * wa, ha, la], center = true);
 	
 		}
-		translate([0, -0.5, 0])
-			battery();
+		battery(10,3);
 	}
 }
 
