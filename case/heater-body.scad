@@ -77,6 +77,27 @@ sw = 12;
 sh = 15;
 sr = 1.95;
 
+module schraube() {
+	translate([0, -20 + 5, 0])
+		rotate([-90, 0, 0])
+			union() {
+				cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
+				cylinder(r = 2.5, h = 30, $fn = 30);
+			}
+}
+
+// XXX stecker-Radius muss noch ermittelt werden
+// 5/16 = 7.93
+stecker_r = 3.5;
+
+module stecker() {
+	translate([0, 0, -la/2 + 1.2])
+		union() {
+			cylinder(r = stecker_r, h = 200, center = true, $fn = 30);
+			cylinder(r = 10/2, h = la, center = true, $fn = 30);
+		}
+}
+
 module body() {
 	difference() {
 		union() {
@@ -85,28 +106,22 @@ module body() {
 				batterycompartment();
 		}
 		union() {
-			translate([sw, ha/2 - 20 + 2.5, -la/2])
-				rotate([-90, 0, 0])
-					cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
-			translate([-sw, ha/2 - 20 + 2.5, -la/2])
-				rotate([-90, 0, 0])
-					cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
-			translate([0, ha/2 - 20 + 2.5, -la/2 + sh])
-				rotate([-90, 0, 0])
-					cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
-			translate([0, ha/2 - 20 + 2.5, -la/2 - sh])
-				rotate([-90, 0, 0])
-					cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
+			translate([sw, bat_h/2, -la/2])
+				schraube();
+			translate([-sw, bat_h/2, -la/2])
+				schraube();
+			translate([0, bat_h/2, -la/2 + sh])
+				schraube();
+			translate([0, bat_h/2, -la/2 - sh])
+				schraube();
 
 			translate([-25, 0, 0])
-				cylinder(r = 3, h = 200, center = true, $fn = 30);
+				stecker();
+
 			translate([20.32, -6.35, 0])
 				cube([9, 7, 300], center = true);
 		}
 	}
-//translate([sw, ha/2 - 20 + 2.5, -la/2 - sh])
-//				rotate([-90, 0, 0])
-//					cylinder(r1 = 20, r2 = 0, h = 20, $fn = 30);
 }
 
 body();
