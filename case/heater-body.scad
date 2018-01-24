@@ -69,7 +69,7 @@ module batterycompartment() {
 				cube([2 * wa, ha, la], center = true);
 	
 		}
-		battery(10,3);
+		battery(8,2.75);
 	}
 }
 
@@ -115,7 +115,7 @@ module body() {
 			translate([0, bat_h/2, -la/2 - sh])
 				schraube();
 
-			translate([-25, 0, 0])
+			translate([-25, 0.75, 0])
 				stecker();
 
 			translate([20.32, -6.35, 0])
