@@ -31,8 +31,9 @@ module toppart() {
 	}
 }
 
-bat_w = 75;
-bat_h = 21.5;
+bat_gap = 0.2 + 0.2;
+bat_w = 78 + 2 * bat_gap;
+bat_h = 21.5 + 2 * bat_gap;
 bat_l = 10;
 bat_r = 10;
 
@@ -88,13 +89,13 @@ module schraube() {
 
 // XXX stecker-Radius muss noch ermittelt werden
 // 5/16 = 7.93
-stecker_r = 3.5;
+stecker_r = 3.8;
 
 module stecker() {
 	translate([0, 0, -la/2 + 1.2])
 		union() {
 			cylinder(r = stecker_r, h = 200, center = true, $fn = 30);
-			cylinder(r = 10/2, h = la, center = true, $fn = 30);
+			cylinder(r = 10.5/2, h = la, center = true, $fn = 30);
 		}
 }
 
