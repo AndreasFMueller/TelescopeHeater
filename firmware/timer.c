@@ -18,8 +18,8 @@
 /*
  * start the timer by using the PCK/4096 prescaler
  */
-#define TIMER_STOP	(1 << CTC1) | (0x0 << CS10)
-#define TIMER_START	(1 << CTC1) | (0xd << CS10)
+#define TIMER_STOP	(0x0 << CS10)
+#define TIMER_START	(0x7 << CS10)
 
 /**
  * \brief initialize the two timers
@@ -32,10 +32,12 @@ static void	timer_setup() {
 	/*
  	 * 8 bit Timer1 is used to generate 100Hz interrupts
  	 */
-	GTCCR = 0;
+	GTCCR ^= (1 << PWM1B) | (1 << COM1B1) | (1 << COM1B0)
+		| (1 << FOC1B) | ( 1 << FOC1A) | (1 << PSR1);
 	TCNT1 = 0;
-	OCR1A = 244; // 100 Hz
-	TIMSK = (1 << OCIE1A);
+	OCR1C = 156; // 100 Hz
+	OCR1A = 0;
+	TIMSK |= (1 << OCIE1A);
 	TCCR1 = TIMER_STOP; // timer stopped
 }
 
@@ -46,6 +48,7 @@ static void	timer_setup() {
  * value is loaded into the Timer 1 configuration register.
  */
 void	timer_start() {
+	TIMSK |= (1 << OCIE1A);
 	TCCR1 = TIMER_START;
 }
 
@@ -55,6 +58,7 @@ void	timer_start() {
  * The TIMER_STOP timer configuration value stops the timer
  */ 
 void	timer_stop() {
+	TIMSK ^= (1 << OCIE1A);
 	TCCR1 = TIMER_STOP;	// timer stopped
 }
 

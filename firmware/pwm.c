@@ -12,12 +12,15 @@
 static void     pwm_setup() __attribute__ ((constructor));
 
 static void	pwm_setup() {
+	// configure PB0 and PB1 as outputs
+	DDRB |= (1 << PB0) | (1 << PB1);
+	// initialize the PWM counter
 	TCNT0 = 0;
-	OCR0A = 0;
-	OCR0B = 0;
+	OCR0A = 64;	// start with 50% duty cycle
+	OCR0B = 196;	// start with 50% duty cycle
 	// configure fast PWM mode
 	TCCR0A = (0x2 << COM0A0) | (0x2 << COM0B0) | 0x3;
-	TCCR0B = (1 << WGM02) | 0x5; // prescaler  clk/1024 (starts timer)
+	TCCR0B = (0 << WGM02) | 0x2; // prescaler  clk/1024 (starts timer)
 }
 
 void	pwm_set(unsigned char channel, unsigned char value) {

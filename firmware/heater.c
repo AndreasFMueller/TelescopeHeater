@@ -17,8 +17,11 @@
  */
 int	main(int argc, char *argv[]) {
 	// initialize
-	pwm_set(PWM_CHANNEL_P4, 0);
-	pwm_set(PWM_CHANNEL_P3, 0);
+	pwm_set(PWM_CHANNEL_P4, 64);
+	pwm_set(PWM_CHANNEL_P3, 196);
+
+	// configure PB2 as output
+	DDRB |= (1 << PB2);
 
 	// enable interrupts
 	sei();
