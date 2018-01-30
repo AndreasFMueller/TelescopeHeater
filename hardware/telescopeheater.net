@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Users/afm/Projects/Electronics/TelescopeHeater/hardware/telescopeheater.sch)
-    (date "Donnerstag, 18. Januar 2018 'u23' 20:23:17")
+    (date "Dienstag, 30. Januar 2018 'u07' 19:07:16")
     (tool "Eeschema 4.0.7")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -59,7 +59,7 @@
       (tstamp 5A60B222))
     (comp (ref Q2)
       (value IRLML0030)
-      (footprint TO_SOT_Packages_SMD:SOT-23)
+      (footprint heater:SOT-23-IRLM)
       (libsource (lib device) (part Q_NMOS_DSG))
       (sheetpath (names /) (tstamps /))
       (tstamp 5A60B305))
@@ -83,7 +83,7 @@
       (tstamp 5A60B90A))
     (comp (ref Q1)
       (value IRLML0030)
-      (footprint TO_SOT_Packages_SMD:SOT-23)
+      (footprint heater:SOT-23-IRLM)
       (libsource (lib device) (part Q_NMOS_DSG))
       (sheetpath (names /) (tstamps /))
       (tstamp 5A60BB36))
