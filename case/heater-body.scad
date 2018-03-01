@@ -74,8 +74,8 @@ module batterycompartment() {
 	}
 }
 
-sw = 12;
-sh = 15;
+sw = 14;
+sh = 10;
 sr = 1.95;
 
 module schraube() {
