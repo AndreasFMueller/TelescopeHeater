@@ -31,32 +31,9 @@ module toppart() {
 	}
 }
 
-bat_gap = 0.2 + 0.2;
-bat_w = 78 + 2 * bat_gap;
-bat_h = 21.5 + 2 * bat_gap;
-bat_l = 10;
-bat_r = 10;
-
-bat_wall = 4;
-
 wa = bat_w + 2 * bat_wall;
 ha = bat_h + 2 * bat_wall;
 la = 120;
-
-function radius(a, b) = (a*a + b*b) / (2*b);
-
-module battery(a, b) {
-	translate([0, 0, -5])
-	minkowski() {
-		cube([bat_w - 2 * a, bat_h - 2 * b, la], center = true);
-		intersection() {
-			translate([0, b - radius(a, b), 0])
-				cylinder(r = radius(a,b), h = 2 * bat_r, center = true, $fn = 40);
-			translate([0, -b + radius(a, b), 0])
-				cylinder(r = radius(a,b), h = 2 * bat_r, center = true, $fn = 40);
-		}
-	}
-}
 
 module batterycompartment() {
 	translate([0, 0, -la/2])
