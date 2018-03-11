@@ -66,7 +66,7 @@ module schraube() {
 
 // XXX stecker-Radius muss noch ermittelt werden
 // 5/16 = 7.93
-stecker_r = 3.8;
+stecker_r = 3.9;
 
 module stecker() {
 	translate([0, 0, -la/2 + 1.2])

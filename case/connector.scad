@@ -18,19 +18,19 @@ module stecker() {
                 cylinder(r = 1.2, h = 1000, center = true, $fn = 30);
             translate([-bat_w / 2 + 4, 0, 0])
                 cylinder(r = 1.2, h = 1000, center = true, $fn = 30);
-            translate([0, 0, 27])
+            translate([0, 0, 26])
                 union() {
                     cube([64, 16, 80], center = true);
                     translate([-25, -0.75, -93])
                     union() {
                         translate([0, 0, 50])
-                            cylinder(r = 4, h = 100, center = true, $fn = 30);
+                            cylinder(r = 4.00, h = 100, center = true, $fn = 30);
                         translate([0, 0, 25])
-                            cylinder(r = 8, h = 50, center = true, $fn = 30);
+                            cylinder(r = 7, h = 50, center = true, $fn = 30);
                     }
                 }
-            translate([0, 10, 14])
-                cube([3, 20, 10], center = true);
+            translate([0, 10, 12.5])
+                cube([4.5, 20, 10], center = true);
         }
     }
 }
@@ -39,9 +39,9 @@ module schraube() {
     translate([0, 0, -20])
     union() {
         translate([0, 0, 10])
-            cylinder(r = 1.2, h = 20, center = true, $fn = 30);
-        translate([0, 0, 1.5])
-            cylinder(r1 = 3, r2 = 0, h = 3, center = true, $fn = 30);
+            cylinder(r = 1.5, h = 20, center = true, $fn = 30);
+        translate([0, 0, 2])
+            cylinder(r1 = 4, r2 = 0, h = 4, center = true, $fn = 30);
     }
 }
 
